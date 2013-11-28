@@ -1,0 +1,38 @@
+# Build and Object Folders
+bin/
+obj/
+Obj/
+
+#User Specific Files
+*.user
+*.suo
+*.userprefs
+*.pidb
+
+
+#Resource Caches
+_ReSharper.*
+*.sln.cache
+*.Cache
+
+#Upgrade Report Files
+_UpgradeReport_Files/
+
+#Nuget
+packages/**
+!packages/repositories.config
+!packages.config
+
+#vim
+*~
+*.swp
+
+#unit tests
+TestResults
+test-results
+
+#logs
+/logs/*.log
+logs
+/BetterCmsSales.Web.Mvc4/logs
+
