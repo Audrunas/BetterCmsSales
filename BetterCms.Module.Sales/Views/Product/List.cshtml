@@ -1,0 +1,21 @@
+﻿@using BetterCms.Module.Root;
+@using BetterCms.Module.Root.Mvc.Grids;
+@using BetterCms.Module.Root.ViewModels.Shared;
+@using BetterCms.Module.Sales.Content.Resources
+
+@{
+    var gridViewModel = new EditableGridViewModel
+    {
+        ShowMessages = true,
+        TopBlockTitle = SalesGlobalization.SiteSettings_Products_Title,
+        Columns = new List<EditableGridColumn>
+            {
+                new EditableGridColumn(SalesGlobalization.SiteSettings_Products_Name_Title, "Name", "name")
+                    {
+                        AutoFocus = true
+                    }
+            }
+    };
+}
+
+@Html.Partial(RootModuleConstants.EditableGridTemplate, gridViewModel)
