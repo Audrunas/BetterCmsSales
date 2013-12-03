@@ -6,9 +6,9 @@ using BetterCms.Module.Root;
 using BetterCms.Module.Root.Mvc;
 using BetterCms.Module.Root.Mvc.Grids.GridOptions;
 
-using BetterCms.Module.Sales.Command.Product.DeleteProduct;
-using BetterCms.Module.Sales.Command.Product.GetProductList;
-using BetterCms.Module.Sales.Command.Product.SaveProduct;
+using BetterCms.Module.Sales.Command.Unit.DeleteUnit;
+using BetterCms.Module.Sales.Command.Unit.GetUnitList;
+using BetterCms.Module.Sales.Command.Unit.SaveUnit;
 using BetterCms.Module.Sales.Content.Resources;
 using BetterCms.Module.Sales.ViewModels;
 
@@ -17,10 +17,10 @@ using Microsoft.Web.Mvc;
 namespace BetterCms.Module.Sales.Controllers
 {
     [ActionLinkArea(SalesModuleDescriptor.SalesAreaName)]
-    public class ProductController : CmsControllerBase
+    public class UnitController : CmsControllerBase
     {
         /// <summary>
-        /// Lists the template for displaying products list.
+        /// Lists the template for displaying units list.
         /// </summary>
         /// <returns>Json result.</returns>
         [BcmsAuthorize(RootModuleConstants.UserRoles.Administration)]
@@ -30,43 +30,43 @@ namespace BetterCms.Module.Sales.Controllers
             var request = new SearchableGridOptions();
             request.SetDefaultPaging();
 
-            var products = GetCommand<GetProductListCommand>().ExecuteCommand(request);
+            var units = GetCommand<GetUnitListCommand>().ExecuteCommand(request);
 
-            return ComboWireJson(products != null, view, products, JsonRequestBehavior.AllowGet);
+            return ComboWireJson(units != null, view, units, JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>
-        /// Lists the products.
+        /// Lists the units.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>Json result.</returns>
         [BcmsAuthorize(RootModuleConstants.UserRoles.Administration)]
-        public ActionResult ProductsList(SearchableGridOptions request)
+        public ActionResult UnitsList(SearchableGridOptions request)
         {
             request.SetDefaultPaging();
-            var model = GetCommand<GetProductListCommand>().ExecuteCommand(request);
+            var model = GetCommand<GetUnitListCommand>().ExecuteCommand(request);
             return WireJson(model != null, model);
         }
 
         /// <summary>
-        /// Saves the product.
+        /// Saves the unit.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <returns>Json result.</returns>
         [HttpPost]
         [BcmsAuthorize(RootModuleConstants.UserRoles.Administration)]
-        public ActionResult SaveProduct(ProductViewModel model)
+        public ActionResult SaveUnit(UnitViewModel model)
         {
             var success = false;
-            ProductViewModel response = null;
+            UnitViewModel response = null;
             if (ModelState.IsValid)
             {
-                response = GetCommand<SaveProductCommand>().ExecuteCommand(model);
+                response = GetCommand<SaveUnitCommand>().ExecuteCommand(model);
                 if (response != null)
                 {
                     if (model.Id.HasDefaultValue())
                     {
-                        Messages.AddSuccess(SalesGlobalization.CreateProduct_CreatedSuccessfully_Message);
+                        Messages.AddSuccess(SalesGlobalization.CreateUnit_CreatedSuccessfully_Message);
                     }
 
                     success = true;
@@ -77,22 +77,22 @@ namespace BetterCms.Module.Sales.Controllers
         }
         
         /// <summary>
-        /// Deletes the product.
+        /// Deletes the unit.
         /// </summary>
         /// <param name="id">The id.</param>
         /// <param name="version">The version.</param>
         /// <returns>Json result.</returns>
         [HttpPost]
         [BcmsAuthorize(RootModuleConstants.UserRoles.Administration)]
-        public ActionResult DeleteProduct(string id, string version)
+        public ActionResult DeleteUnit(string id, string version)
         {
-            var request = new ProductViewModel { Id = id.ToGuidOrDefault(), Version = version.ToIntOrDefault() };
-            var success = GetCommand<DeleteProductCommand>().ExecuteCommand(request);
+            var request = new UnitViewModel { Id = id.ToGuidOrDefault(), Version = version.ToIntOrDefault() };
+            var success = GetCommand<DeleteUnitCommand>().ExecuteCommand(request);
             if (success)
             {
                 if (!request.Id.HasDefaultValue())
                 {
-                    Messages.AddSuccess(SalesGlobalization.DeleteProduct_DeletedSuccessfully_Message);
+                    Messages.AddSuccess(SalesGlobalization.DeleteUnit_DeletedSuccessfully_Message);
                 }
             }
 

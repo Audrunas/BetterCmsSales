@@ -8,6 +8,7 @@ using BetterCms.Core.Modules.Projections;
 using BetterCms.Module.Sales.Content.Resources;
 using BetterCms.Module.Sales.Registration;
 using BetterCms.Module.Root;
+using BetterCms.Module.Sales.Services;
 
 namespace BetterCms.Module.Sales
 {
@@ -89,7 +90,7 @@ namespace BetterCms.Module.Sales
         /// <param name="containerBuilder">The container builder.</param>        
         public override void RegisterModuleTypes(ModuleRegistrationContext context, ContainerBuilder containerBuilder)
         {
-            // containerBuilder.RegisterType<DefaultSubscriberService>().AsImplementedInterfaces().InstancePerLifetimeScope();
+            containerBuilder.RegisterType<DefaultUnitService>().AsImplementedInterfaces().InstancePerLifetimeScope();
         }
 
         /// <summary>
@@ -125,6 +126,14 @@ namespace BetterCms.Module.Sales
                         {
                             Order = 8802,
                             Title = page => SalesGlobalization.SiteSettings_SalesPartnersMenuItem,
+                            CssClass = page => "bcms-sidebar-link",
+                            AccessRole = RootModuleConstants.UserRoles.MultipleRoles(RootModuleConstants.UserRoles.Administration)
+                        },
+
+                    new LinkActionProjection(salesJsModuleIncludeDescriptor, page => "loadSiteSettingsSalesUnits")
+                        {
+                            Order = 8802,
+                            Title = page => SalesGlobalization.SiteSettings_SalesUnitsMenuItem,
                             CssClass = page => "bcms-sidebar-link",
                             AccessRole = RootModuleConstants.UserRoles.MultipleRoles(RootModuleConstants.UserRoles.Administration)
                         }

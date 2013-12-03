@@ -120,11 +120,26 @@
   <data name="CreateProduct_CreatedSuccessfully_Message" xml:space="preserve">
     <value>Product created successfully</value>
   </data>
+  <data name="CreateUnit_CreatedSuccessfully_Message" xml:space="preserve">
+    <value>Unit created successfully</value>
+  </data>
   <data name="DeleteProduct_Confirmation_Message" xml:space="preserve">
     <value>Are you sure you want to delete product "{0}"?</value>
   </data>
   <data name="DeleteProduct_DeletedSuccessfully_Message" xml:space="preserve">
     <value>Product deleted successfully</value>
+  </data>
+  <data name="DeleteUnit_Confirmation_Message" xml:space="preserve">
+    <value>Are you sure you want to delete unit "{0}"?</value>
+  </data>
+  <data name="DeleteUnit_DeletedSuccessfully_Message" xml:space="preserve">
+    <value>Unit deleted successfully</value>
+  </data>
+  <data name="SaveUnit_NotUniqueShortTitle_Message" xml:space="preserve">
+    <value>Unit with such a short title already exists.</value>
+  </data>
+  <data name="SaveUnit_NotUniqueTitle_Message" xml:space="preserve">
+    <value>Unit with such a title already exists.</value>
   </data>
   <data name="SiteSettings_Products_Name_Title" xml:space="preserve">
     <value>Name</value>
@@ -132,10 +147,25 @@
   <data name="SiteSettings_Products_Title" xml:space="preserve">
     <value>Products</value>
   </data>
+  <data name="SiteSettings_Products_Unit_Title" xml:space="preserve">
+    <value>Unit</value>
+  </data>
   <data name="SiteSettings_SalesPartnersMenuItem" xml:space="preserve">
     <value>Partners</value>
   </data>
   <data name="SiteSettings_SalesProductsMenuItem" xml:space="preserve">
     <value>Products</value>
+  </data>
+  <data name="SiteSettings_SalesUnitsMenuItem" xml:space="preserve">
+    <value>Units</value>
+  </data>
+  <data name="SiteSettings_Units_ShortTitle_Title" xml:space="preserve">
+    <value>Short title</value>
+  </data>
+  <data name="SiteSettings_Units_Title" xml:space="preserve">
+    <value>Units</value>
+  </data>
+  <data name="SiteSettings_Units_Title_Title" xml:space="preserve">
+    <value>Title</value>
   </data>
 </root>

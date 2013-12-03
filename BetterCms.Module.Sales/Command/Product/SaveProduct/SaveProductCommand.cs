@@ -1,12 +1,9 @@
 ﻿using BetterCms.Core.DataAccess.DataContext;
 using BetterCms.Core.Mvc.Commands;
-
 using BetterCms.Module.Root.Mvc;
-
-using BetterCms.Module.Sales.Models;
 using BetterCms.Module.Sales.ViewModels;
 
-namespace BetterCms.Module.Sales.Command.SaveProduct
+namespace BetterCms.Module.Sales.Command.Product.SaveProduct
 {
     public class SaveProductCommand : CommandBase, ICommand<ProductViewModel, ProductViewModel>
     {
@@ -18,19 +15,21 @@ namespace BetterCms.Module.Sales.Command.SaveProduct
         public ProductViewModel Execute(ProductViewModel request)
         {
             var isNew = request.Id.HasDefaultValue();
-            Product product;
+            Models.Product product;
 
             if (isNew)
             {
-                product = new Product();
+                product = new Models.Product();
             }
             else
             {
-                product = Repository.AsQueryable<Product>(w => w.Id == request.Id).FirstOne();
+                product = Repository.AsQueryable<Models.Product>(w => w.Id == request.Id).FirstOne();
             }
 
             product.Name = request.Name;
             product.Version = request.Version;
+            product.Unit = Repository.AsProxy<Models.Unit>(request.Unit);
+            product.Price = 0;
 
             Repository.Save(product);
             UnitOfWork.Commit();

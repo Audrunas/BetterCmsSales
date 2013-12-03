@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 using BetterCms.Core.Models;
@@ -9,13 +8,13 @@ using BetterCms.Module.Root.Mvc.Grids;
 
 namespace BetterCms.Module.Sales.ViewModels
 {
-    public class ProductViewModel : IEditableGridItem
+    public class UnitViewModel : IEditableGridItem
     {
         /// <summary>
-        /// Gets or sets the product id.
+        /// Gets or sets the unit id.
         /// </summary>
         /// <value>
-        /// The product id.
+        /// The unit id.
         /// </value>
         [Required(ErrorMessageResourceType = typeof(RootGlobalization), ErrorMessageResourceName = "Validation_RequiredAttribute_Message")]
         public virtual Guid Id { get; set; }
@@ -30,30 +29,24 @@ namespace BetterCms.Module.Sales.ViewModels
         public virtual int Version { get; set; }
 
         /// <summary>
-        /// Gets or sets the product name.
+        /// Gets or sets the unit title.
         /// </summary>
         /// <value>
-        /// The product name.
+        /// The unit title.
         /// </value>
         [Required(ErrorMessageResourceType = typeof(RootGlobalization), ErrorMessageResourceName = "Validation_RequiredAttribute_Message")]
         [StringLength(MaxLength.Name, ErrorMessageResourceType = typeof(RootGlobalization), ErrorMessageResourceName = "Validation_StringLengthAttribute_Message")]
-        public virtual string Name { get; set; }
-
+        public virtual string Title { get; set; }
+        
         /// <summary>
-        /// Gets or sets the unit.
+        /// Gets or sets the unit short title.
         /// </summary>
         /// <value>
-        /// The unit.
+        /// The unit short title.
         /// </value>
-        public virtual Guid Unit { get; set; }
-
-        /// <summary>
-        /// Gets or sets the name of the unit.
-        /// </summary>
-        /// <value>
-        /// The name of the unit.
-        /// </value>
-        public virtual string UnitName { get; set; }
+        [Required(ErrorMessageResourceType = typeof(RootGlobalization), ErrorMessageResourceName = "Validation_RequiredAttribute_Message")]
+        [StringLength(MaxLength.Name, ErrorMessageResourceType = typeof(RootGlobalization), ErrorMessageResourceName = "Validation_StringLengthAttribute_Message")]
+        public virtual string ShortTitle { get; set; }
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
@@ -63,7 +56,7 @@ namespace BetterCms.Module.Sales.ViewModels
         /// </returns>
         public override string ToString()
         {
-            return string.Format("{0}, Id: {1}, Version: {2}, Name: {3}", base.ToString(), Id, Version, Name);
+            return string.Format("{0}, Id: {1}, Version: {2}, Title: {3}, ShortTitle: {4}", base.ToString(), Id, Version, Title, ShortTitle);
         }
     }
 }

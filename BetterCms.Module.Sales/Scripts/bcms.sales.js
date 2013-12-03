@@ -10,10 +10,16 @@ bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcm
                 loadSiteSettingsProductsUrl: null,
                 loadProductsUrl: null,
                 saveProductUrl: null,
-                deleteProductUrl: null
+                deleteProductUrl: null,
+                
+                loadSiteSettingsUnitsUrl: null,
+                loadUnitsUrl: null,
+                saveUnitUrl: null,
+                deleteUnitUrl: null
             },
             globalization = {
-                deleteProductDialogTitle: null
+                deleteProductDialogTitle: null,
+                deleteUnitDialogTitle: null
             };
 
         /**
@@ -30,8 +36,17 @@ bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcm
 
             bcms.extendsClass(ProductsListViewModel, _super);
 
-            function ProductsListViewModel(container, items, gridOptions) {
+            function ProductsListViewModel(container, items, gridOptions, units) {
                 _super.call(this, container, links.loadProductsUrl, items, gridOptions);
+
+                var self = this;
+                self.units = [];
+                
+                if (units && $.isArray(units)) {
+                    for (var i = 0; i < units.length; i++) {
+                        self.units.push({ id: units[i].Id, name: units[i].Title });
+                    }
+                }
             }
 
             ProductsListViewModel.prototype.createItem = function (item) {
@@ -56,19 +71,24 @@ bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcm
                 var self = this;
 
                 self.name = ko.observable().extend({ required: "", maxLength: { maxLength: ko.maxLength.name } });
+                self.unit = ko.observable();
+                self.unitName = ko.observable();
 
-                self.registerFields(self.name);
+                self.registerFields(self.name, self.unit);
 
                 self.name(item.Name);
+                self.unit(item.Unit);
+                self.unitName(item.UnitName);
             }
 
             ProductViewModel.prototype.getDeleteConfirmationMessage = function() {
-                return $.format(globalization.deleteProductDialogTitle, this.email());
+                return $.format(globalization.deleteProductDialogTitle, this.name());
             };
 
             ProductViewModel.prototype.getSaveParams = function () {
                 var params = _super.prototype.getSaveParams.call(this);
                 params.Name = this.name();
+                params.Unit = this.unit() || (this.parent.units.length > 0 && this.parent.units[0].id);
 
                 return params;
             };
@@ -84,7 +104,7 @@ bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcm
             var container = siteSettings.getMainContainer(),
                 data = (json.Success == true) ? json.Data : {};
 
-            var viewModel = new ProductsListViewModel(container, data.Items, data.GridOptions);
+            var viewModel = new ProductsListViewModel(container, data.Items, data.GridOptions, data.Units);
             viewModel.deleteUrl = links.deleteProductUrl;
             viewModel.saveUrl = links.saveProductUrl;
             
@@ -103,6 +123,92 @@ bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcm
         sales.loadSiteSettingsSalesProducts = function () {
             dynamicContent.bindSiteSettings(siteSettings, links.loadSiteSettingsProductsUrl, {
                 contentAvailable: initializeSiteSettingsProducts
+            });
+        };
+
+        /**
+        * Units list view model
+        */
+        var UnitsListViewModel = (function (_super) {
+
+            bcms.extendsClass(UnitsListViewModel, _super);
+
+            function UnitsListViewModel(container, items, gridOptions) {
+                _super.call(this, container, links.loadUnitsUrl, items, gridOptions);
+            }
+
+            UnitsListViewModel.prototype.createItem = function (item) {
+                var newItem = new UnitViewModel(this, item);
+                return newItem;
+            };
+
+            return UnitsListViewModel;
+
+        })(kogrid.ListViewModel);
+
+        /**
+        * Unit view model
+        */
+        var UnitViewModel = (function (_super) {
+
+            bcms.extendsClass(UnitViewModel, _super);
+
+            function UnitViewModel(parent, item) {
+                _super.call(this, parent, item);
+
+                var self = this;
+
+                self.title = ko.observable().extend({ required: "", maxLength: { maxLength: ko.maxLength.name } });
+                self.shortTitle = ko.observable().extend({ required: "", maxLength: { maxLength: ko.maxLength.name } });
+
+                self.registerFields(self.title, self.shortTitle);
+
+                self.title(item.Title);
+                self.shortTitle(item.ShortTitle);
+            }
+
+            UnitViewModel.prototype.getDeleteConfirmationMessage = function () {
+                return $.format(globalization.deleteUnitDialogTitle, this.title());
+            };
+
+            UnitViewModel.prototype.getSaveParams = function () {
+                var params = _super.prototype.getSaveParams.call(this);
+                params.Title = this.title();
+                params.ShortTitle = this.shortTitle();
+
+                return params;
+            };
+
+            return UnitViewModel;
+
+        })(kogrid.ItemViewModel);
+
+        /**
+        * Initializes loading of list of units.
+        */
+        function initializeSiteSettingsUnits(json) {
+            var container = siteSettings.getMainContainer(),
+                data = (json.Success == true) ? json.Data : {};
+
+            var viewModel = new UnitsListViewModel(container, data.Items, data.GridOptions);
+            viewModel.deleteUrl = links.deleteUnitUrl;
+            viewModel.saveUrl = links.saveUnitUrl;
+            
+            ko.applyBindings(viewModel, container.get(0));
+            
+            // Select search.
+            var firstVisibleInputField = container.find('input[type=text],textarea,select').filter(':visible:first');
+            if (firstVisibleInputField) {
+                firstVisibleInputField.focus();
+            }
+        }
+
+        /**
+        * Loads a units list to the site settings container.
+        */
+        sales.loadSiteSettingsSalesUnits = function () {
+            dynamicContent.bindSiteSettings(siteSettings, links.loadSiteSettingsUnitsUrl, {
+                contentAvailable: initializeSiteSettingsUnits
             });
         };
         

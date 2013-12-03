@@ -13,8 +13,8 @@ namespace BetterCms.Module.Sales.Models.Maps
             Map(f => f.Price).Not.Nullable();
             
             References(x => x.Category).Cascade.SaveUpdate().LazyLoad().Nullable();
-            References(x => x.Unit).Cascade.SaveUpdate().LazyLoad().Nullable();
-            References(x => x.Image).Cascade.SaveUpdate().LazyLoad().Not.Nullable();
+            References(x => x.Unit).Cascade.SaveUpdate().LazyLoad().Not.Nullable();
+            References(x => x.Image).Column("MediaImageId").Cascade.SaveUpdate().LazyLoad().Nullable();
         }
     }
 }

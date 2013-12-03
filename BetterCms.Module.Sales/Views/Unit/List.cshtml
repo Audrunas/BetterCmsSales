@@ -7,19 +7,14 @@
     var gridViewModel = new EditableGridViewModel
     {
         ShowMessages = true,
-        TopBlockTitle = SalesGlobalization.SiteSettings_Products_Title,
+        TopBlockTitle = SalesGlobalization.SiteSettings_Units_Title,
         Columns = new List<EditableGridColumn>
             {
-                new EditableGridColumn(SalesGlobalization.SiteSettings_Products_Name_Title, "Name", "name")
+                new EditableGridColumn(SalesGlobalization.SiteSettings_Units_Title_Title, "Title", "title")
                     {
                         AutoFocus = true
                     },
-                    
-                new EditableGridDropDownColumn(SalesGlobalization.SiteSettings_Products_Unit_Title, null, "unit")
-                    {
-                        OptionsBind = "parent.units",
-                        ValueTextBind = "unitName"
-                    },
+                new EditableGridColumn(SalesGlobalization.SiteSettings_Units_ShortTitle_Title, "ShortTitle", "shortTitle")
             }
     };
 }
