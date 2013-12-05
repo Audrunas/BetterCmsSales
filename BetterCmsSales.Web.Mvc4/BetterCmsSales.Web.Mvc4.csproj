@@ -235,6 +235,7 @@
   <ItemGroup>
     <Content Include="betterCms.license.txt" />
     <Content Include="favicon.ico" />
+    <EmbeddedResource Include="file\bcms-sales\scripts\bcms.sales.js" />
     <Content Include="Global.asax" />
     <Content Include="Config\cms.config" />
     <Content Include="Areas\Web.config" />

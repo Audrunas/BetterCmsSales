@@ -179,6 +179,12 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\Buyer\DeleteBuyer\DeleteBuyerCommand.cs" />
+    <Compile Include="Command\Buyer\GetBuyerList\GetBuyerListCommand.cs" />
+    <Compile Include="Command\Buyer\SaveBuyer\SaveBuyerCommand.cs" />
+    <Compile Include="Command\Supplier\DeleteSupplier\DeleteSupplierCommand.cs" />
+    <Compile Include="Command\Supplier\GetSupplierList\GetSupplierListCommand.cs" />
+    <Compile Include="Command\Supplier\SaveSupplier\SaveSupplierCommand.cs" />
     <Compile Include="Command\Unit\DeleteUnit\DeleteUnitCommand.cs" />
     <Compile Include="Command\Unit\GetUnitList\GetUnitListCommand.cs" />
     <Compile Include="Command\Unit\SaveUnit\SaveUnitCommand.cs" />
@@ -222,6 +228,9 @@
     <Compile Include="Registration\SalesJsModuleIncludeDescriptor.cs" />
     <Compile Include="Services\DefaultUnitService.cs" />
     <Compile Include="Services\IUnitService.cs" />
+    <Compile Include="ViewModels\BuyerViewModel.cs" />
+    <Compile Include="ViewModels\SupplierViewModel.cs" />
+    <Compile Include="ViewModels\PartnerViewModel.cs" />
     <Compile Include="ViewModels\ProductsListViewModel.cs" />
     <Compile Include="ViewModels\UnitViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
@@ -261,6 +270,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Unit\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Buyer\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Supplier\List.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

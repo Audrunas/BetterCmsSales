@@ -61,6 +61,15 @@ namespace BetterCms.Module.Sales.Content.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Buyer created successfully.
+        /// </summary>
+        public static string CreateBuyer_CreatedSuccessfully_Message {
+            get {
+                return ResourceManager.GetString("CreateBuyer_CreatedSuccessfully_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product created successfully.
         /// </summary>
         public static string CreateProduct_CreatedSuccessfully_Message {
@@ -70,11 +79,29 @@ namespace BetterCms.Module.Sales.Content.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Supplier created successfully.
+        /// </summary>
+        public static string CreateSupplier_CreatedSuccessfully_Message {
+            get {
+                return ResourceManager.GetString("CreateSupplier_CreatedSuccessfully_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unit created successfully.
         /// </summary>
         public static string CreateUnit_CreatedSuccessfully_Message {
             get {
                 return ResourceManager.GetString("CreateUnit_CreatedSuccessfully_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Buyer deleted successfully..
+        /// </summary>
+        public static string DeleteBuyer_DeletedSuccessfully_Message {
+            get {
+                return ResourceManager.GetString("DeleteBuyer_DeletedSuccessfully_Message", resourceCulture);
             }
         }
         
@@ -97,6 +124,15 @@ namespace BetterCms.Module.Sales.Content.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Supplier deleted successfully..
+        /// </summary>
+        public static string DeleteSupplier_DeletedSuccessfully_Message {
+            get {
+                return ResourceManager.GetString("DeleteSupplier_DeletedSuccessfully_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete unit &quot;{0}&quot;?.
         /// </summary>
         public static string DeleteUnit_Confirmation_Message {
@@ -115,6 +151,33 @@ namespace BetterCms.Module.Sales.Content.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid email address.
+        /// </summary>
+        public static string EditPartner_IvalidEmail_Message {
+            get {
+                return ResourceManager.GetString("EditPartner_IvalidEmail_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Buyer with such a name already exists..
+        /// </summary>
+        public static string SaveBuyer_NotUniqueName_Message {
+            get {
+                return ResourceManager.GetString("SaveBuyer_NotUniqueName_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supplier with such a name already exists..
+        /// </summary>
+        public static string SaveSupplier_NotUniqueName_Message {
+            get {
+                return ResourceManager.GetString("SaveSupplier_NotUniqueName_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unit with such a short title already exists..
         /// </summary>
         public static string SaveUnit_NotUniqueShortTitle_Message {
@@ -129,6 +192,51 @@ namespace BetterCms.Module.Sales.Content.Resources {
         public static string SaveUnit_NotUniqueTitle_Message {
             get {
                 return ResourceManager.GetString("SaveUnit_NotUniqueTitle_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string SiteSettings_Buyers_Address_Title {
+            get {
+                return ResourceManager.GetString("SiteSettings_Buyers_Address_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string SiteSettings_Buyers_Email_Title {
+            get {
+                return ResourceManager.GetString("SiteSettings_Buyers_Email_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string SiteSettings_Buyers_Name_Title {
+            get {
+                return ResourceManager.GetString("SiteSettings_Buyers_Name_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PhoneNumber.
+        /// </summary>
+        public static string SiteSettings_Buyers_PhoneNumber_Title {
+            get {
+                return ResourceManager.GetString("SiteSettings_Buyers_PhoneNumber_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Buyers.
+        /// </summary>
+        public static string SiteSettings_Buyers_Title {
+            get {
+                return ResourceManager.GetString("SiteSettings_Buyers_Title", resourceCulture);
             }
         }
         
@@ -183,6 +291,51 @@ namespace BetterCms.Module.Sales.Content.Resources {
         public static string SiteSettings_SalesUnitsMenuItem {
             get {
                 return ResourceManager.GetString("SiteSettings_SalesUnitsMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string SiteSettings_Suppliers_Address_Title {
+            get {
+                return ResourceManager.GetString("SiteSettings_Suppliers_Address_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string SiteSettings_Suppliers_Email_Title {
+            get {
+                return ResourceManager.GetString("SiteSettings_Suppliers_Email_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string SiteSettings_Suppliers_Name_Title {
+            get {
+                return ResourceManager.GetString("SiteSettings_Suppliers_Name_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone Number.
+        /// </summary>
+        public static string SiteSettings_Suppliers_PhoneNumber_Title {
+            get {
+                return ResourceManager.GetString("SiteSettings_Suppliers_PhoneNumber_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suppliers.
+        /// </summary>
+        public static string SiteSettings_Suppliers_Title {
+            get {
+                return ResourceManager.GetString("SiteSettings_Suppliers_Title", resourceCulture);
             }
         }
         

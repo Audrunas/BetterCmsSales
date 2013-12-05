@@ -254,6 +254,8 @@ bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcm
             
             var suppliers = new siteSettings.TabViewModel(globalization.suppliersTabTitle, links.loadSiteSettingsSupplierUrl, initializeSiteSettingsSuppliersList, onShow);
             tabs.push(suppliers);
+            
+            siteSettings.initContentTabs(tabs);
         };
 
         /**

@@ -117,11 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CreateBuyer_CreatedSuccessfully_Message" xml:space="preserve">
+    <value>Buyer created successfully</value>
+  </data>
   <data name="CreateProduct_CreatedSuccessfully_Message" xml:space="preserve">
     <value>Product created successfully</value>
   </data>
+  <data name="CreateSupplier_CreatedSuccessfully_Message" xml:space="preserve">
+    <value>Supplier created successfully</value>
+  </data>
   <data name="CreateUnit_CreatedSuccessfully_Message" xml:space="preserve">
     <value>Unit created successfully</value>
+  </data>
+  <data name="DeleteBuyer_DeletedSuccessfully_Message" xml:space="preserve">
+    <value>Buyer deleted successfully.</value>
   </data>
   <data name="DeleteProduct_Confirmation_Message" xml:space="preserve">
     <value>Are you sure you want to delete product "{0}"?</value>
@@ -129,17 +138,44 @@
   <data name="DeleteProduct_DeletedSuccessfully_Message" xml:space="preserve">
     <value>Product deleted successfully</value>
   </data>
+  <data name="DeleteSupplier_DeletedSuccessfully_Message" xml:space="preserve">
+    <value>Supplier deleted successfully.</value>
+  </data>
   <data name="DeleteUnit_Confirmation_Message" xml:space="preserve">
     <value>Are you sure you want to delete unit "{0}"?</value>
   </data>
   <data name="DeleteUnit_DeletedSuccessfully_Message" xml:space="preserve">
     <value>Unit deleted successfully</value>
   </data>
+  <data name="EditPartner_IvalidEmail_Message" xml:space="preserve">
+    <value>Invalid email address</value>
+  </data>
+  <data name="SaveBuyer_NotUniqueName_Message" xml:space="preserve">
+    <value>Buyer with such a name already exists.</value>
+  </data>
+  <data name="SaveSupplier_NotUniqueName_Message" xml:space="preserve">
+    <value>Supplier with such a name already exists.</value>
+  </data>
   <data name="SaveUnit_NotUniqueShortTitle_Message" xml:space="preserve">
     <value>Unit with such a short title already exists.</value>
   </data>
   <data name="SaveUnit_NotUniqueTitle_Message" xml:space="preserve">
     <value>Unit with such a title already exists.</value>
+  </data>
+  <data name="SiteSettings_Buyers_Address_Title" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="SiteSettings_Buyers_Email_Title" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="SiteSettings_Buyers_Name_Title" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="SiteSettings_Buyers_PhoneNumber_Title" xml:space="preserve">
+    <value>PhoneNumber</value>
+  </data>
+  <data name="SiteSettings_Buyers_Title" xml:space="preserve">
+    <value>Buyers</value>
   </data>
   <data name="SiteSettings_Products_Name_Title" xml:space="preserve">
     <value>Name</value>
@@ -158,6 +194,21 @@
   </data>
   <data name="SiteSettings_SalesUnitsMenuItem" xml:space="preserve">
     <value>Units</value>
+  </data>
+  <data name="SiteSettings_Suppliers_Address_Title" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="SiteSettings_Suppliers_Email_Title" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="SiteSettings_Suppliers_Name_Title" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="SiteSettings_Suppliers_PhoneNumber_Title" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="SiteSettings_Suppliers_Title" xml:space="preserve">
+    <value>Suppliers</value>
   </data>
   <data name="SiteSettings_Units_ShortTitle_Title" xml:space="preserve">
     <value>Short title</value>
