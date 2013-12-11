@@ -55,10 +55,10 @@ namespace BetterCms.Module.Sales.Controllers
         /// <returns>Json result.</returns>
         [HttpPost]
         [BcmsAuthorize(RootModuleConstants.UserRoles.Administration)]
-        public ActionResult SaveSupplier(SupplierViewModel model)
+        public ActionResult SaveSupplier(PartnerViewModel model)
         {
             var success = false;
-            SupplierViewModel response = null;
+            PartnerViewModel response = null;
             if (ModelState.IsValid)
             {
                 response = GetCommand<SaveSupplierCommand>().ExecuteCommand(model);
@@ -86,7 +86,7 @@ namespace BetterCms.Module.Sales.Controllers
         [BcmsAuthorize(RootModuleConstants.UserRoles.Administration)]
         public ActionResult DeleteSupplier(string id, string version)
         {
-            var request = new SupplierViewModel { Id = id.ToGuidOrDefault(), Version = version.ToIntOrDefault() };
+            var request = new PartnerViewModel { Id = id.ToGuidOrDefault(), Version = version.ToIntOrDefault() };
             var success = GetCommand<DeleteSupplierCommand>().ExecuteCommand(request);
             if (success)
             {

@@ -9,14 +9,14 @@ using BetterCms.Module.Sales.ViewModels;
 
 namespace BetterCms.Module.Sales.Command.Supplier.SaveSupplier
 {
-    public class SaveSupplierCommand : CommandBase, ICommand<SupplierViewModel, SupplierViewModel>
+    public class SaveSupplierCommand : CommandBase, ICommand<PartnerViewModel, PartnerViewModel>
     {
         /// <summary>
         /// Executes the specified request.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns></returns>
-        public SupplierViewModel Execute(SupplierViewModel request)
+        public PartnerViewModel Execute(PartnerViewModel request)
         {
             var isNew = request.Id.HasDefaultValue();
             Models.Supplier supplier;
@@ -41,7 +41,7 @@ namespace BetterCms.Module.Sales.Command.Supplier.SaveSupplier
             Repository.Save(supplier);
             UnitOfWork.Commit();
 
-            return new SupplierViewModel
+            return new PartnerViewModel
                 {
                     Id = supplier.Id,
                     Version = supplier.Version,
@@ -50,12 +50,12 @@ namespace BetterCms.Module.Sales.Command.Supplier.SaveSupplier
                 };
         }
 
-        private void ValidateRequest(bool isNew, SupplierViewModel request)
+        private void ValidateRequest(bool isNew, PartnerViewModel request)
         {
             var query = Repository.AsQueryable<Models.Supplier>();
             if (!isNew)
             {
-                query = query.Where(w => w.Id == request.Id);
+                query = query.Where(w => w.Id != request.Id);
             }
 
             if (query.Any(u => u.Name == request.Name))

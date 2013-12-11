@@ -8,6 +8,7 @@
     {
         ShowMessages = true,
         TopBlockTitle = SalesGlobalization.SiteSettings_Suppliers_Title,
+        TopBlockClass = "bcms-top-block-holder",
         Columns = new List<EditableGridColumn>
             {
                 new EditableGridColumn(SalesGlobalization.SiteSettings_Suppliers_Name_Title, "Name", "name")
@@ -15,7 +16,6 @@
                         AutoFocus = true
                     },
                 new EditableGridColumn(SalesGlobalization.SiteSettings_Suppliers_Email_Title, "Email", "email"),
-                new EditableGridColumn(SalesGlobalization.SiteSettings_Suppliers_Address_Title, "Address", "address"),
                 new EditableGridColumn(SalesGlobalization.SiteSettings_Suppliers_PhoneNumber_Title, "PhoneNumber", "phoneNumber"),
             }
     };

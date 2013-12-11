@@ -228,8 +228,6 @@
     <Compile Include="Registration\SalesJsModuleIncludeDescriptor.cs" />
     <Compile Include="Services\DefaultUnitService.cs" />
     <Compile Include="Services\IUnitService.cs" />
-    <Compile Include="ViewModels\BuyerViewModel.cs" />
-    <Compile Include="ViewModels\SupplierViewModel.cs" />
     <Compile Include="ViewModels\PartnerViewModel.cs" />
     <Compile Include="ViewModels\ProductsListViewModel.cs" />
     <Compile Include="ViewModels\UnitViewModel.cs" />

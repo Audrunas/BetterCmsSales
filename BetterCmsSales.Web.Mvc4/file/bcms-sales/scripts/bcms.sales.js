@@ -18,11 +18,20 @@ bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcm
                 deleteUnitUrl: null,
                 
                 loadSiteSettingsBuyersUrl: null,
-                loadSiteSettingsSuppliersUrl: null
+                saveBuyerUrl: null,
+                deleteBuyerUrl: null,
+                loadBuyersUrl: null,
+                
+                loadSiteSettingsSuppliersUrl: null,
+                saveSupplierUrl: null,
+                deleteSupplierUrl: null,
+                loadSuppliersUrl: null
             },
             globalization = {
                 deleteProductDialogTitle: null,
                 deleteUnitDialogTitle: null,
+                deleteBuyerDialogTitle: null,
+                deleteSupplierDialogTitle: null,
                 buyersTabTitle: null,
                 suppliersTabTitle: null
             };
@@ -223,18 +232,105 @@ bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcm
             });
         };
         
+        /**
+        * Partners list view model
+        */
+        var PartnersListViewModel = (function (_super) {
+
+            bcms.extendsClass(PartnersListViewModel, _super);
+
+            function PartnersListViewModel(container, items, gridOptions, loadPartnersUrl, deleteConfirmationMessage) {
+                _super.call(this, container, loadPartnersUrl, items, gridOptions);
+
+                this.deleteConfirmationMessage = deleteConfirmationMessage;
+            }
+
+            PartnersListViewModel.prototype.createItem = function (item) {
+                var newItem = new PartnerViewModel(this, item);
+
+                return newItem;
+            };
+
+            return PartnersListViewModel;
+
+        })(kogrid.ListViewModel);
+
+        /**
+        * Partner view model
+        */
+        var PartnerViewModel = (function (_super) {
+
+            bcms.extendsClass(PartnerViewModel, _super);
+
+            function PartnerViewModel(parent, item) {
+                _super.call(this, parent, item);
+
+                var self = this;
+
+                self.name = ko.observable().extend({ required: "", maxLength: { maxLength: ko.maxLength.name } });
+                self.email = ko.observable().extend({ email: "", maxLength: { maxLength: ko.maxLength.email } });
+                self.phoneNumber = ko.observable().extend({ maxLength: { maxLength: ko.maxLength.name } });
+
+                self.registerFields(self.name, self.email, self.phoneNumber);
+
+                self.name(item.Name);
+                self.email(item.Email);
+                self.phoneNumber(item.PhoneNumber);
+            }
+
+            PartnerViewModel.prototype.getDeleteConfirmationMessage = function () {
+                return $.format(this.parent.deleteConfirmationMessage, this.name());
+            };
+
+            PartnerViewModel.prototype.getSaveParams = function () {
+                var params = _super.prototype.getSaveParams.call(this);
+                params.Name = this.name();
+                params.Email = this.email();
+                params.PhoneNumber = this.phoneNumber();
+
+                return params;
+            };
+
+            return PartnerViewModel;
+
+        })(kogrid.ItemViewModel);
+
         /*
         * Initializes site settings buyers list
         */
-        function initializeSiteSettingsBuyersList() {
-            
+        function initializeSiteSettingsBuyersList(container, json) {
+            var data = (json.Success == true) ? json.Data : {};
+
+            var viewModel = new PartnersListViewModel(container, data.Items, data.GridOptions, links.loadBuyersUrl, globalization.deleteBuyerDialogTitle);
+            viewModel.deleteUrl = links.deleteBuyerUrl;
+            viewModel.saveUrl = links.saveBuyerUrl;
+
+            ko.applyBindings(viewModel, container.get(0));
+
+            // Select search.
+            var firstVisibleInputField = container.find('input[type=text],textarea,select').filter(':visible:first');
+            if (firstVisibleInputField) {
+                firstVisibleInputField.focus();
+            }
         }
 
         /*
         * Initializes site settings suppliers list
         */
-        function initializeSiteSettingsSuppliersList() {
-            
+        function initializeSiteSettingsSuppliersList(container, json) {
+            var data = (json.Success == true) ? json.Data : {};
+
+            var viewModel = new PartnersListViewModel(container, data.Items, data.GridOptions, links.loadSuppliersUrl, globalization.deleteSupplierDialogTitle);
+            viewModel.deleteUrl = links.deleteSupplierUrl;
+            viewModel.saveUrl = links.saveSupplierUrl;
+
+            ko.applyBindings(viewModel, container.get(0));
+
+            // Select search.
+            var firstVisibleInputField = container.find('input[type=text],textarea,select').filter(':visible:first');
+            if (firstVisibleInputField) {
+                firstVisibleInputField.focus();
+            }
         }
 
         /**
@@ -252,7 +348,7 @@ bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcm
             var buyers = new siteSettings.TabViewModel(globalization.buyersTabTitle, links.loadSiteSettingsBuyersUrl, initializeSiteSettingsBuyersList, onShow);
             tabs.push(buyers);
             
-            var suppliers = new siteSettings.TabViewModel(globalization.suppliersTabTitle, links.loadSiteSettingsSupplierUrl, initializeSiteSettingsSuppliersList, onShow);
+            var suppliers = new siteSettings.TabViewModel(globalization.suppliersTabTitle, links.loadSiteSettingsSuppliersUrl, initializeSiteSettingsSuppliersList, onShow);
             tabs.push(suppliers);
             
             siteSettings.initContentTabs(tabs);

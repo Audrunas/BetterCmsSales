@@ -4,14 +4,14 @@ using BetterCms.Module.Sales.ViewModels;
 
 namespace BetterCms.Module.Sales.Command.Supplier.DeleteSupplier
 {
-    public class DeleteSupplierCommand : CommandBase, ICommand<SupplierViewModel, bool>
+    public class DeleteSupplierCommand : CommandBase, ICommand<PartnerViewModel, bool>
     {
         /// <summary>
         /// Executes the specified request.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns><c>True</c>, if supplier was deleted successfully.</returns>
-        public bool Execute(SupplierViewModel request)
+        public bool Execute(PartnerViewModel request)
         {
             Repository.Delete<Models.Supplier>(request.Id, request.Version);
             UnitOfWork.Commit();

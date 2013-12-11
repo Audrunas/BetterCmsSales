@@ -44,6 +44,8 @@ namespace BetterCms.Module.Sales.Registration
                 {
                     new JavaScriptModuleGlobalization(this, "deleteProductDialogTitle", () => SalesGlobalization.DeleteProduct_Confirmation_Message), 
                     new JavaScriptModuleGlobalization(this, "deleteUnitDialogTitle", () => SalesGlobalization.DeleteUnit_Confirmation_Message), 
+                    new JavaScriptModuleGlobalization(this, "deleteBuyerDialogTitle", () => SalesGlobalization.DeleteBuyer_Confirmation_Message), 
+                    new JavaScriptModuleGlobalization(this, "deleteSupplierDialogTitle", () => SalesGlobalization.DeleteSupplier_Confirmation_Message), 
                     
                     new JavaScriptModuleGlobalization(this, "buyersTabTitle", () => SalesGlobalization.SiteSettings_Buyers_Title), 
                     new JavaScriptModuleGlobalization(this, "suppliersTabTitle", () => SalesGlobalization.SiteSettings_Suppliers_Title), 

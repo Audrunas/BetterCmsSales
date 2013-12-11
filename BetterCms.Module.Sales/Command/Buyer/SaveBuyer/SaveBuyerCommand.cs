@@ -9,14 +9,14 @@ using BetterCms.Module.Sales.ViewModels;
 
 namespace BetterCms.Module.Sales.Command.Buyer.SaveBuyer
 {
-    public class SaveBuyerCommand : CommandBase, ICommand<BuyerViewModel, BuyerViewModel>
+    public class SaveBuyerCommand : CommandBase, ICommand<PartnerViewModel, PartnerViewModel>
     {
         /// <summary>
         /// Executes the specified request.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns></returns>
-        public BuyerViewModel Execute(BuyerViewModel request)
+        public PartnerViewModel Execute(PartnerViewModel request)
         {
             var isNew = request.Id.HasDefaultValue();
             Models.Buyer buyer;
@@ -41,7 +41,7 @@ namespace BetterCms.Module.Sales.Command.Buyer.SaveBuyer
             Repository.Save(buyer);
             UnitOfWork.Commit();
 
-            return new BuyerViewModel
+            return new PartnerViewModel
                 {
                     Id = buyer.Id,
                     Version = buyer.Version,
@@ -50,12 +50,12 @@ namespace BetterCms.Module.Sales.Command.Buyer.SaveBuyer
                 };
         }
 
-        private void ValidateRequest(bool isNew, BuyerViewModel request)
+        private void ValidateRequest(bool isNew, PartnerViewModel request)
         {
             var query = Repository.AsQueryable<Models.Buyer>();
             if (!isNew)
             {
-                query = query.Where(w => w.Id == request.Id);
+                query = query.Where(w => w.Id != request.Id);
             }
 
             if (query.Any(u => u.Name == request.Name))

@@ -9,19 +9,20 @@ using BetterCms.Module.Root.Mvc.Grids.GridOptions;
 using BetterCms.Module.Root.ViewModels.SiteSettings;
 
 using BetterCms.Module.Sales.ViewModels;
+using NHibernate.Linq;
 
 namespace BetterCms.Module.Sales.Command.Buyer.GetBuyerList
 {
-    public class GetBuyerListCommand : CommandBase, ICommand<SearchableGridOptions, SearchableGridViewModel<BuyerViewModel>>
+    public class GetBuyerListCommand : CommandBase, ICommand<SearchableGridOptions, SearchableGridViewModel<PartnerViewModel>>
     {
         /// <summary>
         /// Executes the specified request.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>List with buyer view models</returns>
-        public SearchableGridViewModel<BuyerViewModel> Execute(SearchableGridOptions request)
+        public SearchableGridViewModel<PartnerViewModel> Execute(SearchableGridOptions request)
         {
-            SearchableGridViewModel<BuyerViewModel> model;
+            SearchableGridViewModel<PartnerViewModel> model;
 
             request.SetDefaultSortingOptions("Name");
 
@@ -38,7 +39,7 @@ namespace BetterCms.Module.Sales.Command.Buyer.GetBuyerList
 
             var buyers = query
                 .Select(buyer =>
-                    new BuyerViewModel
+                    new PartnerViewModel
                     {
                         Id = buyer.Id,
                         Version = buyer.Version,
@@ -48,10 +49,10 @@ namespace BetterCms.Module.Sales.Command.Buyer.GetBuyerList
                         PhoneNumber = buyer.PhoneNumber
                     });
 
-            var count = query.ToRowCountFutureValue();
-            buyers = buyers.AddSortingAndPaging(request);
+            var count = buyers.ToRowCountFutureValue();
+            buyers = buyers.AddOrder(request);
 
-            model = new SearchableGridViewModel<BuyerViewModel>(buyers.ToList(), request, count.Value);
+            model = new SearchableGridViewModel<PartnerViewModel>(buyers.ToFuture().ToList(), request, count.Value);
 
             return model;
         }

@@ -97,6 +97,15 @@ namespace BetterCms.Module.Sales.Content.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete buyer {0}?.
+        /// </summary>
+        public static string DeleteBuyer_Confirmation_Message {
+            get {
+                return ResourceManager.GetString("DeleteBuyer_Confirmation_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Buyer deleted successfully..
         /// </summary>
         public static string DeleteBuyer_DeletedSuccessfully_Message {
@@ -120,6 +129,15 @@ namespace BetterCms.Module.Sales.Content.Resources {
         public static string DeleteProduct_DeletedSuccessfully_Message {
             get {
                 return ResourceManager.GetString("DeleteProduct_DeletedSuccessfully_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete supplier {0}?.
+        /// </summary>
+        public static string DeleteSupplier_Confirmation_Message {
+            get {
+                return ResourceManager.GetString("DeleteSupplier_Confirmation_Message", resourceCulture);
             }
         }
         
@@ -223,7 +241,7 @@ namespace BetterCms.Module.Sales.Content.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PhoneNumber.
+        ///   Looks up a localized string similar to Phone Number.
         /// </summary>
         public static string SiteSettings_Buyers_PhoneNumber_Title {
             get {

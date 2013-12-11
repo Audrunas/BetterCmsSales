@@ -12,16 +12,16 @@ using BetterCms.Module.Sales.ViewModels;
 
 namespace BetterCms.Module.Sales.Command.Supplier.GetSupplierList
 {
-    public class GetSupplierListCommand : CommandBase, ICommand<SearchableGridOptions, SearchableGridViewModel<SupplierViewModel>>
+    public class GetSupplierListCommand : CommandBase, ICommand<SearchableGridOptions, SearchableGridViewModel<PartnerViewModel>>
     {
         /// <summary>
         /// Executes the specified request.
         /// </summary>
         /// <param name="request">The request.</param>
         /// <returns>List with supplier view models</returns>
-        public SearchableGridViewModel<SupplierViewModel> Execute(SearchableGridOptions request)
+        public SearchableGridViewModel<PartnerViewModel> Execute(SearchableGridOptions request)
         {
-            SearchableGridViewModel<SupplierViewModel> model;
+            SearchableGridViewModel<PartnerViewModel> model;
 
             request.SetDefaultSortingOptions("Name");
 
@@ -38,7 +38,7 @@ namespace BetterCms.Module.Sales.Command.Supplier.GetSupplierList
 
             var suppliers = query
                 .Select(supplier =>
-                    new SupplierViewModel
+                    new PartnerViewModel
                     {
                         Id = supplier.Id,
                         Version = supplier.Version,
@@ -48,10 +48,10 @@ namespace BetterCms.Module.Sales.Command.Supplier.GetSupplierList
                         PhoneNumber = supplier.PhoneNumber
                     });
 
-            var count = query.ToRowCountFutureValue();
+            var count = suppliers.ToRowCountFutureValue();
             suppliers = suppliers.AddSortingAndPaging(request);
 
-            model = new SearchableGridViewModel<SupplierViewModel>(suppliers.ToList(), request, count.Value);
+            model = new SearchableGridViewModel<PartnerViewModel>(suppliers.ToList(), request, count.Value);
 
             return model;
         }
