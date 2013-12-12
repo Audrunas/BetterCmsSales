@@ -1,0 +1,20 @@
+﻿@using BetterCms.Module.Root;
+@using BetterCms.Module.Root.Mvc.Grids;
+@using BetterCms.Module.Root.ViewModels.Shared;
+@using BetterCms.Module.Sales.Content.Resources
+
+@{
+    var gridViewModel = new EditableGridViewModel
+    {
+        ShowMessages = true,
+        TopBlockTitle = SalesGlobalization.SiteSettings_Purchases_Title,
+        Columns = new List<EditableGridColumn>
+            {
+                new EditableGridColumn(SalesGlobalization.SiteSettings_Purchases_CreatedOn_Title, "CreatedOn", "createdOn"),
+                new EditableGridColumn(SalesGlobalization.SiteSettings_Purchases_Supplier_Title, "SupplierName", "supplierName"),
+                new EditableGridColumn(SalesGlobalization.SiteSettings_Purchases_Status_Title, "Status", "status"),
+            }
+    };
+}
+
+@Html.Partial(RootModuleConstants.EditableGridTemplate, gridViewModel)

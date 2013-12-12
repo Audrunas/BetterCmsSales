@@ -112,11 +112,9 @@ namespace BetterCms.Module.Sales
         {
             return new IPageActionProjection[]
                 {
-                    new SeparatorProjection(8800),
-
                     new LinkActionProjection(salesJsModuleIncludeDescriptor, page => "loadSiteSettingsSalesProducts")
                         {
-                            Order = 8801,
+                            Order = 10,
                             Title = page => SalesGlobalization.SiteSettings_SalesProductsMenuItem,
                             CssClass = page => "bcms-sidebar-link",
                             AccessRole = RootModuleConstants.UserRoles.MultipleRoles(RootModuleConstants.UserRoles.Administration)
@@ -124,7 +122,7 @@ namespace BetterCms.Module.Sales
 
                     new LinkActionProjection(salesJsModuleIncludeDescriptor, page => "loadSiteSettingsSalesPartners")
                         {
-                            Order = 8802,
+                            Order = 20,
                             Title = page => SalesGlobalization.SiteSettings_SalesPartnersMenuItem,
                             CssClass = page => "bcms-sidebar-link",
                             AccessRole = RootModuleConstants.UserRoles.MultipleRoles(RootModuleConstants.UserRoles.Administration)
@@ -132,11 +130,29 @@ namespace BetterCms.Module.Sales
 
                     new LinkActionProjection(salesJsModuleIncludeDescriptor, page => "loadSiteSettingsSalesUnits")
                         {
-                            Order = 8802,
+                            Order = 30,
                             Title = page => SalesGlobalization.SiteSettings_SalesUnitsMenuItem,
                             CssClass = page => "bcms-sidebar-link",
                             AccessRole = RootModuleConstants.UserRoles.MultipleRoles(RootModuleConstants.UserRoles.Administration)
-                        }
+                        },
+
+                    new LinkActionProjection(salesJsModuleIncludeDescriptor, page => "loadSiteSettingsSales")
+                        {
+                            Order = 40,
+                            Title = page => SalesGlobalization.SiteSettings_SalesMenuItem,
+                            CssClass = page => "bcms-sidebar-link",
+                            AccessRole = RootModuleConstants.UserRoles.MultipleRoles(RootModuleConstants.UserRoles.Administration)
+                        },
+
+                    new LinkActionProjection(salesJsModuleIncludeDescriptor, page => "loadSiteSettingsPurchases")
+                        {
+                            Order = 50,
+                            Title = page => SalesGlobalization.SiteSettings_PurchasesMenuItem,
+                            CssClass = page => "bcms-sidebar-link",
+                            AccessRole = RootModuleConstants.UserRoles.MultipleRoles(RootModuleConstants.UserRoles.Administration)
+                        },
+
+                    new SeparatorProjection(60)
                 };
         }
     }

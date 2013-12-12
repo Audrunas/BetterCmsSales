@@ -38,6 +38,8 @@ namespace BetterCms.Module.Sales.Registration
                     new JavaScriptModuleLinkTo<SupplierController>(this, "loadSuppliersUrl", c => c.SuppliersList(null)),
                     new JavaScriptModuleLinkTo<SupplierController>(this, "saveSupplierUrl", c => c.SaveSupplier(null)),
                     new JavaScriptModuleLinkTo<SupplierController>(this, "deleteSupplierUrl", c => c.DeleteSupplier(null, null)),
+
+                    new JavaScriptModuleLinkTo<PurchaseController>(this, "loadSiteSettingsPurchasesUrl", c => c.ListTemplate()),
                 };
 
             Globalization = new IActionProjection[]
@@ -46,6 +48,7 @@ namespace BetterCms.Module.Sales.Registration
                     new JavaScriptModuleGlobalization(this, "deleteUnitDialogTitle", () => SalesGlobalization.DeleteUnit_Confirmation_Message), 
                     new JavaScriptModuleGlobalization(this, "deleteBuyerDialogTitle", () => SalesGlobalization.DeleteBuyer_Confirmation_Message), 
                     new JavaScriptModuleGlobalization(this, "deleteSupplierDialogTitle", () => SalesGlobalization.DeleteSupplier_Confirmation_Message), 
+                    new JavaScriptModuleGlobalization(this, "deletePurchaseDialogTitle", () => SalesGlobalization.DeletePurchase_Confirmation_Message), 
                     
                     new JavaScriptModuleGlobalization(this, "buyersTabTitle", () => SalesGlobalization.SiteSettings_Buyers_Title), 
                     new JavaScriptModuleGlobalization(this, "suppliersTabTitle", () => SalesGlobalization.SiteSettings_Suppliers_Title), 

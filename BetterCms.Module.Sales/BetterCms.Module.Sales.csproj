@@ -182,6 +182,9 @@
     <Compile Include="Command\Buyer\DeleteBuyer\DeleteBuyerCommand.cs" />
     <Compile Include="Command\Buyer\GetBuyerList\GetBuyerListCommand.cs" />
     <Compile Include="Command\Buyer\SaveBuyer\SaveBuyerCommand.cs" />
+    <Compile Include="Command\Purchase\DeletePurchase\DeletePurchaseCommand.cs" />
+    <Compile Include="Command\Purchase\GetPurchaseList\GetPurchaseListCommand.cs" />
+    <Compile Include="Command\Purchase\SavePurchase\SavePurchaseCommand.cs" />
     <Compile Include="Command\Supplier\DeleteSupplier\DeleteSupplierCommand.cs" />
     <Compile Include="Command\Supplier\GetSupplierList\GetSupplierListCommand.cs" />
     <Compile Include="Command\Supplier\SaveSupplier\SaveSupplierCommand.cs" />
@@ -197,6 +200,7 @@
       <DependentUpon>SalesGlobalization.resx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\BuyerController.cs" />
+    <Compile Include="Controllers\PurchaseController.cs" />
     <Compile Include="Controllers\UnitController.cs" />
     <Compile Include="Controllers\PartnerController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
@@ -230,6 +234,7 @@
     <Compile Include="Services\IUnitService.cs" />
     <Compile Include="ViewModels\PartnerViewModel.cs" />
     <Compile Include="ViewModels\ProductsListViewModel.cs" />
+    <Compile Include="ViewModels\PurchaseViewModel.cs" />
     <Compile Include="ViewModels\UnitViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
   </ItemGroup>
@@ -274,6 +279,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Supplier\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Purchase\List.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

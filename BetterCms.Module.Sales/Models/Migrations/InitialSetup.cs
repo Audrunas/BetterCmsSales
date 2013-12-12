@@ -144,6 +144,11 @@ namespace BetterCms.Module.Sales.Models.Migrations
                .Table("SaleStatuses").InSchema(SchemaName)
                .WithColumn("Id").AsInt16().NotNullable().PrimaryKey()
                .WithColumn("Name").AsString(MaxLength.Name).NotNullable();
+
+            Insert
+                .IntoTable("SaleStatuses").InSchema(SchemaName)
+                .Row(new { Id = 1, Name = "New" })
+                .Row(new { Id = 2, Name = "Completed" });
         }
 
         private void CreatePurchaseStatusesTable()
@@ -152,6 +157,11 @@ namespace BetterCms.Module.Sales.Models.Migrations
                .Table("PurchaseStatuses").InSchema(SchemaName)
                .WithColumn("Id").AsInt16().NotNullable().PrimaryKey()
                .WithColumn("Name").AsString(MaxLength.Name).NotNullable();
+
+            Insert
+                .IntoTable("PurchaseStatuses").InSchema(SchemaName)
+                .Row(new {Id = 1, Name = "New"})
+                .Row(new {Id = 2, Name = "Completed"});
         }
 
         private void CreatePurchasesTable()

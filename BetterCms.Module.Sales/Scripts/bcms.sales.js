@@ -25,13 +25,17 @@ bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcm
                 loadSiteSettingsSuppliersUrl: null,
                 saveSupplierUrl: null,
                 deleteSupplierUrl: null,
-                loadSuppliersUrl: null
+                loadSuppliersUrl: null,
+                
+                loadSiteSettingsPurchasesUrl: null,
             },
             globalization = {
                 deleteProductDialogTitle: null,
                 deleteUnitDialogTitle: null,
                 deleteBuyerDialogTitle: null,
                 deleteSupplierDialogTitle: null,
+                deletePurchaseDialogTitle: null,
+                
                 buyersTabTitle: null,
                 suppliersTabTitle: null
             };
@@ -352,6 +356,85 @@ bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcm
             tabs.push(suppliers);
             
             siteSettings.initContentTabs(tabs);
+        };
+
+        /**
+        * Purchases list view model
+        */
+        var PurchasesListViewModel = (function (_super) {
+
+            bcms.extendsClass(PurchasesListViewModel, _super);
+
+            function PurchasesListViewModel(container, items, gridOptions, units) {
+                _super.call(this, container, links.loadPurchasesUrl, items, gridOptions);
+            }
+
+            PurchasesListViewModel.prototype.createItem = function (item) {
+                var newItem = new PurchaseViewModel(this, item);
+
+                return newItem;
+            };
+
+            return PurchasesListViewModel;
+
+        })(kogrid.ListViewModel);
+
+        /**
+        * Purchase view model
+        */
+        var PurchaseViewModel = (function (_super) {
+
+            bcms.extendsClass(PurchaseViewModel, _super);
+
+            function PurchaseViewModel(parent, item) {
+                _super.call(this, parent, item);
+
+                var self = this;
+
+                self.name = ko.observable().extend({ required: "", maxLength: { maxLength: ko.maxLength.name } });
+                self.unit = ko.observable();
+                self.unitName = ko.observable();
+
+                self.registerFields(self.name, self.unit);
+
+                self.name(item.Name);
+                self.unit(item.Unit);
+                self.unitName(item.UnitName);
+            }
+
+            PurchaseViewModel.prototype.getDeleteConfirmationMessage = function () {
+                return $.format(globalization.deletePurchaseDialogTitle, this.name());
+            };
+
+            return PurchaseViewModel;
+
+        })(kogrid.ItemViewModel);
+
+        /**
+        * Initializes loading of list of purchases.
+        */
+        function initializeSiteSettingsPurchases(json) {
+            var container = siteSettings.getMainContainer(),
+                data = (json.Success == true) ? json.Data : {};
+
+            var viewModel = new PurchasesListViewModel(container, data.Items, data.GridOptions);
+
+            ko.applyBindings(viewModel, container.get(0));
+
+            // Select search.
+            var firstVisibleInputField = container.find('input[type=text],textarea,select').filter(':visible:first');
+            if (firstVisibleInputField) {
+                firstVisibleInputField.focus();
+            }
+        }
+
+        /**
+        * Loads a purchases list
+        */
+        sales.loadSiteSettingsPurchases = function () {
+            dynamicContent.bindSiteSettings(siteSettings, links.loadSiteSettingsPurchasesUrl, {
+                contentAvailable: initializeSiteSettingsPurchases
+            });
         };
 
         /**

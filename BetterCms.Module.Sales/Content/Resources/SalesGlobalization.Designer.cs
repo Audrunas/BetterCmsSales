@@ -133,7 +133,16 @@ namespace BetterCms.Module.Sales.Content.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to delete supplier {0}?.
+        ///   Looks up a localized string similar to Are you sure you want to delete a purchase {0}?.
+        /// </summary>
+        public static string DeletePurchase_Confirmation_Message {
+            get {
+                return ResourceManager.GetString("DeletePurchase_Confirmation_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete supplier?.
         /// </summary>
         public static string DeleteSupplier_Confirmation_Message {
             get {
@@ -282,6 +291,60 @@ namespace BetterCms.Module.Sales.Content.Resources {
         public static string SiteSettings_Products_Unit_Title {
             get {
                 return ResourceManager.GetString("SiteSettings_Products_Unit_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creation Date.
+        /// </summary>
+        public static string SiteSettings_Purchases_CreatedOn_Title {
+            get {
+                return ResourceManager.GetString("SiteSettings_Purchases_CreatedOn_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string SiteSettings_Purchases_Status_Title {
+            get {
+                return ResourceManager.GetString("SiteSettings_Purchases_Status_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supplier.
+        /// </summary>
+        public static string SiteSettings_Purchases_Supplier_Title {
+            get {
+                return ResourceManager.GetString("SiteSettings_Purchases_Supplier_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchases.
+        /// </summary>
+        public static string SiteSettings_Purchases_Title {
+            get {
+                return ResourceManager.GetString("SiteSettings_Purchases_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchases.
+        /// </summary>
+        public static string SiteSettings_PurchasesMenuItem {
+            get {
+                return ResourceManager.GetString("SiteSettings_PurchasesMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sales.
+        /// </summary>
+        public static string SiteSettings_SalesMenuItem {
+            get {
+                return ResourceManager.GetString("SiteSettings_SalesMenuItem", resourceCulture);
             }
         }
         
