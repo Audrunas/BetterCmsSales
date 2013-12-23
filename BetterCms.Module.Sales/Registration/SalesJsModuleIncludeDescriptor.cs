@@ -40,6 +40,9 @@ namespace BetterCms.Module.Sales.Registration
                     new JavaScriptModuleLinkTo<SupplierController>(this, "deleteSupplierUrl", c => c.DeleteSupplier(null, null)),
 
                     new JavaScriptModuleLinkTo<PurchaseController>(this, "loadSiteSettingsPurchasesUrl", c => c.ListTemplate()),
+                    new JavaScriptModuleLinkTo<PurchaseController>(this, "createPurchaseUrl", c => c.CreatePurchase()),
+                    new JavaScriptModuleLinkTo<PurchaseController>(this, "editPurchaseUrl", c => c.EditPurchase("{0}")),
+                    new JavaScriptModuleLinkTo<PurchaseController>(this, "deletePurchaseUrl", c => c.DeletePurchase(null, null)),
                 };
 
             Globalization = new IActionProjection[]

@@ -184,6 +184,7 @@
     <Compile Include="Command\Buyer\SaveBuyer\SaveBuyerCommand.cs" />
     <Compile Include="Command\Purchase\DeletePurchase\DeletePurchaseCommand.cs" />
     <Compile Include="Command\Purchase\GetPurchaseList\GetPurchaseListCommand.cs" />
+    <Compile Include="Command\Purchase\GetPurchase\GetPurchaseCommand.cs" />
     <Compile Include="Command\Purchase\SavePurchase\SavePurchaseCommand.cs" />
     <Compile Include="Command\Supplier\DeleteSupplier\DeleteSupplierCommand.cs" />
     <Compile Include="Command\Supplier\GetSupplierList\GetSupplierListCommand.cs" />
@@ -282,6 +283,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Purchase\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Purchase\EditPurchase.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

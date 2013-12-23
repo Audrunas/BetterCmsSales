@@ -79,6 +79,15 @@ namespace BetterCms.Module.Sales.Content.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Purchase created successfully..
+        /// </summary>
+        public static string CreatePurchase_CreatedSuccessfully_Message {
+            get {
+                return ResourceManager.GetString("CreatePurchase_CreatedSuccessfully_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Supplier created successfully.
         /// </summary>
         public static string CreateSupplier_CreatedSuccessfully_Message {
@@ -142,6 +151,15 @@ namespace BetterCms.Module.Sales.Content.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Purchase deleted successfully..
+        /// </summary>
+        public static string DeletePurchase_DeletedSuccessfully_Message {
+            get {
+                return ResourceManager.GetString("DeletePurchase_DeletedSuccessfully_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete supplier?.
         /// </summary>
         public static string DeleteSupplier_Confirmation_Message {
@@ -183,6 +201,24 @@ namespace BetterCms.Module.Sales.Content.Resources {
         public static string EditPartner_IvalidEmail_Message {
             get {
                 return ResourceManager.GetString("EditPartner_IvalidEmail_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supplier.
+        /// </summary>
+        public static string EditPurchase_Supplier_Title {
+            get {
+                return ResourceManager.GetString("EditPurchase_Supplier_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose the products supplier from the suppliers list.
+        /// </summary>
+        public static string EditPurchase_Supplier_Tooltip_Description {
+            get {
+                return ResourceManager.GetString("EditPurchase_Supplier_Tooltip_Description", resourceCulture);
             }
         }
         

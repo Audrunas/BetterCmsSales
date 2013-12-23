@@ -1,0 +1,39 @@
+﻿@using BetterCms.Module.Root.Mvc.Helpers
+@using BetterCms.Module.Sales.Content.Resources
+@using BetterCms.Module.Sales.Controllers
+@using Microsoft.Web.Mvc
+
+@model BetterCms.Module.Sales.ViewModels.PurchaseViewModel
+
+<div class="bcms-scroll-window">
+    @Html.TabbedContentMessagesBox()
+    <div class="bcms-padded-content">
+        @using (Html.BeginForm<PurchaseController>(f => f.SavePurchase(null), FormMethod.Post,
+                                               new
+                                                   {
+                                                       @class = "bcms-ajax-form"
+                                                   }))
+        {
+            <div class="bcms-input-list-holder">
+                @Html.Tooltip(SalesGlobalization.EditPurchase_Supplier_Tooltip_Description)
+                <div class="bcms-content-titles">@SalesGlobalization.EditPurchase_Supplier_Title</div>
+
+                <div class="bcms-input-box">
+                    @Html.TextBoxFor(model => model.SupplierName, new
+                                                                      {
+                                                                          @class = "bcms-editor-field-box",
+                                                                          @data_bind = "value: supplierName",
+                                                                          style="width: 400px;"
+                                                                      })
+                    @Html.BcmsValidationMessageFor(f => f.SupplierName)
+                    <div class="bcms-btn-small">...</div>
+                </div>
+            </div>
+            
+            @Html.HiddenFor(model => model.Version)
+            @Html.HiddenFor(model => model.SupplierId)
+
+            @Html.HiddenSubmit()
+        }
+    </div>
+</div>

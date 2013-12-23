@@ -123,6 +123,9 @@
   <data name="CreateProduct_CreatedSuccessfully_Message" xml:space="preserve">
     <value>Product created successfully</value>
   </data>
+  <data name="CreatePurchase_CreatedSuccessfully_Message" xml:space="preserve">
+    <value>Purchase created successfully.</value>
+  </data>
   <data name="CreateSupplier_CreatedSuccessfully_Message" xml:space="preserve">
     <value>Supplier created successfully</value>
   </data>
@@ -144,6 +147,9 @@
   <data name="DeletePurchase_Confirmation_Message" xml:space="preserve">
     <value>Are you sure you want to delete a purchase {0}?</value>
   </data>
+  <data name="DeletePurchase_DeletedSuccessfully_Message" xml:space="preserve">
+    <value>Purchase deleted successfully.</value>
+  </data>
   <data name="DeleteSupplier_Confirmation_Message" xml:space="preserve">
     <value>Are you sure you want to delete supplier?</value>
   </data>
@@ -158,6 +164,12 @@
   </data>
   <data name="EditPartner_IvalidEmail_Message" xml:space="preserve">
     <value>Invalid email address</value>
+  </data>
+  <data name="EditPurchase_Supplier_Title" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="EditPurchase_Supplier_Tooltip_Description" xml:space="preserve">
+    <value>Choose the products supplier from the suppliers list</value>
   </data>
   <data name="SaveBuyer_NotUniqueName_Message" xml:space="preserve">
     <value>Buyer with such a name already exists.</value>

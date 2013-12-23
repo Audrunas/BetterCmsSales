@@ -1,7 +1,7 @@
 ﻿/*jslint unparam: true, white: true, browser: true, devel: true */
 /*global bettercms */
-bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcms.dynamicContent', 'bcms.ko.extenders', 'bcms.ko.grid'],
-    function ($, bcms, siteSettings, dynamicContent, ko, kogrid) {
+bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcms.dynamicContent', 'bcms.ko.extenders', 'bcms.ko.grid', 'bcms.modal'],
+    function ($, bcms, siteSettings, dynamicContent, ko, kogrid, modal) {
         'use strict';
 
         var sales = {},
@@ -28,6 +28,9 @@ bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcm
                 loadSuppliersUrl: null,
 
                 loadSiteSettingsPurchasesUrl: null,
+                createPurchaseUrl: null,
+                editPurchaseUrl: null,
+                deletePurchaseUrl: null
             },
             globalization = {
                 deleteProductDialogTitle: null,
@@ -37,7 +40,10 @@ bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcm
                 deletePurchaseDialogTitle: null,
 
                 buyersTabTitle: null,
-                suppliersTabTitle: null
+                suppliersTabTitle: null,
+                
+                editPurchaseTitle: null,
+                createNewPurchaseTitle: null
             };
 
         /**
@@ -358,6 +364,26 @@ bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcm
             siteSettings.initContentTabs(tabs);
         };
 
+        function initializeEditPurchaseForm(dialog, json) {
+            
+        }
+
+        function openEditPurchaseForm(id, postSuccess) {
+            var title = (id) ? globalization.editPurchaseTitle : globalization.createNewPurchaseTitle,
+                url = (id) ? $.format(links, links.createPurchaseUrl) : links.editPurchaseUrl;
+
+            modal.open({
+                title: title,
+                onLoad: function (dialog) {
+                    dynamicContent.bindDialog(dialog, url, {
+                        contentAvailable: initializeEditPurchaseForm,
+
+                        postSuccess: postSuccess
+                    });
+                }
+            });
+        }
+
         /**
         * Purchases list view model
         */
@@ -373,6 +399,12 @@ bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcm
                 var newItem = new PurchaseViewModel(this, item);
 
                 return newItem;
+            };
+
+            PurchasesListViewModel.prototype.addNewItem = function () {
+                openEditPurchaseForm('', function(json) {
+                    self.item.unshift(new PurchaseViewModel(self, json.Data));
+                });
             };
 
             return PurchasesListViewModel;
@@ -402,6 +434,12 @@ bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcm
 
             PurchaseViewModel.prototype.getDeleteConfirmationMessage = function () {
                 return globalization.deletePurchaseDialogTitle;
+            };
+            
+            PurchaseViewModel.prototype.openItem = function () {
+                openEditPurchaseForm(self.id(), function (json) {
+                    self.version(json.Data.Version);
+                });
             };
 
             return PurchaseViewModel;

@@ -43,6 +43,7 @@ namespace BetterCms.Module.Sales.ViewModels
         /// <value>
         /// The name of the purchase supplier.
         /// </value>
+        [Required(ErrorMessageResourceType = typeof(RootGlobalization), ErrorMessageResourceName = "Validation_RequiredAttribute_Message")]
         public virtual string SupplierName { get; set; }
 
         /// <summary>
