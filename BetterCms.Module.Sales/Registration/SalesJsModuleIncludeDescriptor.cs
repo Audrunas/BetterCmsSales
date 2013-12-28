@@ -43,6 +43,8 @@ namespace BetterCms.Module.Sales.Registration
                     new JavaScriptModuleLinkTo<PurchaseController>(this, "createPurchaseUrl", c => c.CreatePurchase()),
                     new JavaScriptModuleLinkTo<PurchaseController>(this, "editPurchaseUrl", c => c.EditPurchase("{0}")),
                     new JavaScriptModuleLinkTo<PurchaseController>(this, "deletePurchaseUrl", c => c.DeletePurchase(null, null)),
+
+                    new JavaScriptModuleLinkTo<SupplierController>(this, "suggestSupplierUrl", c => c.SuggestSupplier(null)),
                 };
 
             Globalization = new IActionProjection[]
@@ -55,6 +57,9 @@ namespace BetterCms.Module.Sales.Registration
                     
                     new JavaScriptModuleGlobalization(this, "buyersTabTitle", () => SalesGlobalization.SiteSettings_Buyers_Title), 
                     new JavaScriptModuleGlobalization(this, "suppliersTabTitle", () => SalesGlobalization.SiteSettings_Suppliers_Title), 
+                    
+                    new JavaScriptModuleGlobalization(this, "editPurchaseTitle", () => SalesGlobalization.EditPurchase_Dialog_Title), 
+                    new JavaScriptModuleGlobalization(this, "createNewPurchaseTitle", () => SalesGlobalization.CreatePurchase_Dialog_Title), 
                 };
         }
     }

@@ -95,7 +95,7 @@ namespace BetterCms.Module.Sales.Controllers
         public ActionResult EditPurchase(string id)
         {
             var model = GetCommand<GetPurchaseCommand>().ExecuteCommand(id.ToGuidOrDefault());
-            var view = RenderView("EditPurchase", null);
+            var view = RenderView("EditPurchase", model);
 
             return ComboWireJson(model != null, view, model, JsonRequestBehavior.AllowGet);
         }
@@ -110,7 +110,7 @@ namespace BetterCms.Module.Sales.Controllers
         public ActionResult CreatePurchase()
         {
             var model = GetCommand<GetPurchaseCommand>().ExecuteCommand(System.Guid.Empty);
-            var view = RenderView("EditPurchase", null);
+            var view = RenderView("EditPurchase", model);
 
             return ComboWireJson(model != null, view, model, JsonRequestBehavior.AllowGet);
         }

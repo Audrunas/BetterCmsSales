@@ -88,6 +88,15 @@ namespace BetterCms.Module.Sales.Content.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create new purchase.
+        /// </summary>
+        public static string CreatePurchase_Dialog_Title {
+            get {
+                return ResourceManager.GetString("CreatePurchase_Dialog_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Supplier created successfully.
         /// </summary>
         public static string CreateSupplier_CreatedSuccessfully_Message {
@@ -142,7 +151,7 @@ namespace BetterCms.Module.Sales.Content.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Are you sure you want to delete a purchase {0}?.
+        ///   Looks up a localized string similar to Are you sure you want to delete this purchase?.
         /// </summary>
         public static string DeletePurchase_Confirmation_Message {
             get {
@@ -201,6 +210,15 @@ namespace BetterCms.Module.Sales.Content.Resources {
         public static string EditPartner_IvalidEmail_Message {
             get {
                 return ResourceManager.GetString("EditPartner_IvalidEmail_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit purchase.
+        /// </summary>
+        public static string EditPurchase_Dialog_Title {
+            get {
+                return ResourceManager.GetString("EditPurchase_Dialog_Title", resourceCulture);
             }
         }
         

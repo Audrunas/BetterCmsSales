@@ -1,11 +1,13 @@
 ﻿/*jslint unparam: true, white: true, browser: true, devel: true */
 /*global bettercms */
-bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcms.dynamicContent', 'bcms.ko.extenders', 'bcms.ko.grid', 'bcms.modal'],
-    function ($, bcms, siteSettings, dynamicContent, ko, kogrid, modal) {
+bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcms.dynamicContent', 'bcms.ko.extenders', 'bcms.ko.grid', 'bcms.modal', 'bcms.autocomplete'],
+    function ($, bcms, siteSettings, dynamicContent, ko, kogrid, modal, autocomplete) {
         'use strict';
 
         var sales = {},
-            selectors = {},
+            selectors = {
+                firstForm: 'form:first'
+            },
             links = {
                 loadSiteSettingsProductsUrl: null,
                 loadProductsUrl: null,
@@ -30,7 +32,9 @@ bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcm
                 loadSiteSettingsPurchasesUrl: null,
                 createPurchaseUrl: null,
                 editPurchaseUrl: null,
-                deletePurchaseUrl: null
+                deletePurchaseUrl: null,
+                
+                suggestSupplierUrl: null
             },
             globalization = {
                 deleteProductDialogTitle: null,
@@ -364,13 +368,46 @@ bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcm
             siteSettings.initContentTabs(tabs);
         };
 
-        function initializeEditPurchaseForm(dialog, json) {
+        /**
+        * Supplier autocomplete view model
+        */
+        var SupplierAutocompleteViewModel = (function (_super) {
+            bcms.extendsClass(SupplierAutocompleteViewModel, _super);
+
+            function SupplierAutocompleteViewModel(onItemSelect) {
+                var options = {
+                    serviceUrl: links.suggestSupplierUrl,
+                    onItemSelect: onItemSelect
+                };
+
+                _super.call(this, options);
+            }
+
+            return SupplierAutocompleteViewModel;
+        })(autocomplete.AutocompleteViewModel);
+
+        function PurchaseEditViewModel(purchase) {
+            var self = this;
+
+            self.supplierName = ko.observable(purchase.SupplierName);
+            self.supplierId = ko.observable(purchase.SupplierId);
             
+            self.autocompleteViewModel = new SupplierAutocompleteViewModel(function (suggestionItem) {
+                self.supplierId(suggestionItem.id());
+            });
+
+            return self;
+        }
+
+        function initializeEditPurchaseForm(dialog, json) {
+            var model = new PurchaseEditViewModel(json.Data);
+
+            ko.applyBindings(model, dialog.container.find(selectors.firstForm).get(0));
         }
 
         function openEditPurchaseForm(id, postSuccess) {
             var title = (id) ? globalization.editPurchaseTitle : globalization.createNewPurchaseTitle,
-                url = (id) ? $.format(links, links.createPurchaseUrl) : links.editPurchaseUrl;
+                url = (id) ? $.format(links.editPurchaseUrl, id) : links.createPurchaseUrl;
 
             modal.open({
                 title: title,
@@ -402,8 +439,9 @@ bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcm
             };
 
             PurchasesListViewModel.prototype.addNewItem = function () {
+                var self = this;
                 openEditPurchaseForm('', function(json) {
-                    self.item.unshift(new PurchaseViewModel(self, json.Data));
+                    self.items.unshift(new PurchaseViewModel(this, json.Data));
                 });
             };
 
@@ -435,8 +473,10 @@ bettercms.define('bcms.sales', ['bcms.jquery', 'bcms', 'bcms.siteSettings', 'bcm
             PurchaseViewModel.prototype.getDeleteConfirmationMessage = function () {
                 return globalization.deletePurchaseDialogTitle;
             };
-            
-            PurchaseViewModel.prototype.openItem = function () {
+
+            PurchaseViewModel.prototype.editItem = function () {
+                var self = this;
+                
                 openEditPurchaseForm(self.id(), function (json) {
                     self.version(json.Data.Version);
                 });

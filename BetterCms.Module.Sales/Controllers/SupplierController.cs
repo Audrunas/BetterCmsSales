@@ -5,10 +5,11 @@ using BetterCms.Core.Security;
 using BetterCms.Module.Root;
 using BetterCms.Module.Root.Mvc;
 using BetterCms.Module.Root.Mvc.Grids.GridOptions;
-
+using BetterCms.Module.Root.ViewModels.Autocomplete;
 using BetterCms.Module.Sales.Command.Supplier.DeleteSupplier;
 using BetterCms.Module.Sales.Command.Supplier.GetSupplierList;
 using BetterCms.Module.Sales.Command.Supplier.SaveSupplier;
+using BetterCms.Module.Sales.Command.Supplier.SuggestSupplier;
 using BetterCms.Module.Sales.Content.Resources;
 using BetterCms.Module.Sales.ViewModels;
 
@@ -97,6 +98,14 @@ namespace BetterCms.Module.Sales.Controllers
             }
 
             return WireJson(success);
+        }
+
+        [BcmsAuthorize(RootModuleConstants.UserRoles.Administration)]
+        public ActionResult SuggestSupplier(SuggestionViewModel model)
+        {
+            var suppliers = GetCommand<SuggestSupplierCommand>().ExecuteCommand(model);
+
+            return Json(new { suggestions = suppliers });
         }
     }
 }

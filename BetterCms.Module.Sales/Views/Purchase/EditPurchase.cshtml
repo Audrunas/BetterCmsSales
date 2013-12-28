@@ -22,16 +22,15 @@
                     @Html.TextBoxFor(model => model.SupplierName, new
                                                                       {
                                                                           @class = "bcms-editor-field-box",
-                                                                          @data_bind = "value: supplierName",
+                                                                          @data_bind = "value: supplierName, autocomplete: 'onlyExisting'",
                                                                           style="width: 400px;"
                                                                       })
-                    @Html.BcmsValidationMessageFor(f => f.SupplierName)
-                    <div class="bcms-btn-small">...</div>
                 </div>
             </div>
             
             @Html.HiddenFor(model => model.Version)
-            @Html.HiddenFor(model => model.SupplierId)
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.SupplierId, new {data_bind = "value: supplierId()"})
 
             @Html.HiddenSubmit()
         }
